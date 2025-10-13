@@ -20,6 +20,7 @@
 }
 
 .profile-img {
+  background-color: #eef8c2;
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -67,7 +68,28 @@
   width: 220px;
   background-color: #ff6f6f;
   color: white;
-padding: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #363636;
+  border: none;
+}
+
+.logout-button:hover {
+  background-color: #ff5c5c;
+}
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 111, 111, 0.5);
+}
+
+.login-button {
+  width: 220px;
+  background-color: #c1eb39;
+  color: white;
+  padding: 16px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;

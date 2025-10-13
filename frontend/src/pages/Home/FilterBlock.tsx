@@ -1,4 +1,5 @@
-import './FilterBlock.scss';
+import "./FilterBlock.scss";
+import React from "react";
 
 export interface CompanyData {
   company: string;
@@ -15,12 +16,13 @@ type FilterBlockProps = {
   setData: React.Dispatch<React.SetStateAction<CompanyData[]>>;
 };
 
-export function FilterBlock({setData }: FilterBlockProps) {
+export function FilterBlock({ setData }: FilterBlockProps) {
+
   const addNewRequest = () => {
     const newRequest: CompanyData = {
-      company: "Bauch, Hirthe and Jones",
-      role: "Administrator",
-      website: "https://earnest-ballpark.info",
+      company: "New Company",
+      role: "New Role",
+      website: "https://newcompany.com", // Example website URL
       department: "Internal",
       status: "rejected",
       date: new Date().toString(),
@@ -32,7 +34,9 @@ export function FilterBlock({setData }: FilterBlockProps) {
 
   return (
     <div className="filter-container">
-      <div className="add-new" onClick={addNewRequest}>Add new</div>
+      <div className="add-new" onClick={addNewRequest}>
+        Add new
+      </div>
     </div>
   );
 }

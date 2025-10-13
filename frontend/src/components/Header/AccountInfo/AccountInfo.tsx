@@ -1,14 +1,17 @@
-import logo from "../../assets/profile-image.jpg";
-import { Dashboard } from "../../assets/dashboard";
-import { Statistics } from "../../assets/statistics";
-import { Settings } from "../../assets/settings";
-import { HelpIcon } from "../../assets/help";
+import emptyProfileImage from "../../../assets/images.png";
+import { Dashboard } from "../../../assets/dashboard";
+import { Statistics } from "../../../assets/statistics";
+import { Settings } from "../../../assets/settings";
+import { HelpIcon } from "../../../assets/help";
 import "./AccountInfo.scss";
-import "./button.scss";
 import { useState } from "react";
 
-export function AccountInfo() {
-  // хранит индекс активного элемента
+interface AccountInfoProps {
+  login: boolean;
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export function AccountInfo({login, setLogin}: AccountInfoProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const iconDefault = "rgba(255, 255, 255, 0.87)";
@@ -24,7 +27,7 @@ export function AccountInfo() {
   return (
     <>
       <div className="account-container">
-        <img className="profile-img" src={logo} alt="Profile image" />
+        <img className="profile-img" src={emptyProfileImage} alt="Profile image" />
         <div className="profile-info">
           <div className="profile-name">Dima Murzin</div>
           <div className="profile-mail">dimon4ik1456@gmail.com</div>
@@ -44,7 +47,9 @@ export function AccountInfo() {
             {label}
           </div>
         ))}
-        <button type="button" className="logout-button">Log Out</button>
+        <button type="button" className={login ? "logout-button" : "login-button"} onClick={() => setLogin(!login)}>
+          {login ? "Log Out" : "Log In"}
+        </button>
       </div>
     </>
   );

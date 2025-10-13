@@ -1,5 +1,5 @@
 import "./Header.scss";
-import { SunIcon } from "../../assets/sun-icon.tsx";
+import { SunIcon } from "../../../assets/sun-icon";
 import dayjs from "dayjs";
 
 function Header() {

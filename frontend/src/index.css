@@ -1,5 +1,5 @@
 body{
   background: #121212;
-  margin: 0 auto;
-  overflow: hidden;
 }
+
+html, body {margin: 0; height: 100%; overflow: hidden}

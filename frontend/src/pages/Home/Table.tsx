@@ -18,9 +18,14 @@ export interface CompanyData {
 
 interface ShowTableProps {
   data: CompanyData[];
+  updateData: (uuid: string, update: Partial<CompanyData>) => void;
 }
 
-export function ShowTable({ data }: ShowTableProps) {
+export function ShowTable({ data, updateData }: ShowTableProps) {
+  const changeStatus = (uuid: string) => {
+    updateData(uuid, { status: "in progress" });
+  };
+
   const columns: ColumnDef<CompanyData>[] = [
     { accessorKey: "company", header: "Company" },
     { accessorKey: "role", header: "Role" },
@@ -43,7 +48,11 @@ export function ShowTable({ data }: ShowTableProps) {
       cell: ({ getValue }) => {
         const status = getValue<string>();
         return (
-          <span className={status === "in progress" ? "status-progress" : "status-rejected"}>
+          <span
+            className={
+              status === "in progress" ? "status-progress" : "status-rejected"
+            }
+          >
             {status}
           </span>
         );
@@ -64,7 +73,10 @@ export function ShowTable({ data }: ShowTableProps) {
           <tr key={hg.id}>
             {hg.headers.map((header) => (
               <th key={header.id}>
-                {flexRender(header.column.columnDef.header, header.getContext())}
+                {flexRender(
+                  header.column.columnDef.header,
+                  header.getContext()
+                )}
               </th>
             ))}
           </tr>
@@ -78,6 +90,11 @@ export function ShowTable({ data }: ShowTableProps) {
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
+            <td>
+              <button className="update-button" onClick={() => changeStatus(row.original.uuid)}>
+                Update
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

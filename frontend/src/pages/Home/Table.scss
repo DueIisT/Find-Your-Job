@@ -29,6 +29,10 @@ td {
   @include text;
   font-size: 16px;
 }
+td:last-child {
+  text-align: right;
+  padding-right: 0;
+}
 
 tr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -42,9 +46,20 @@ th {
   padding: 12px 4px;
 }
 a {
-  color: #1e90ff;
+  color: #d1f06e;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
+}
+.update-button {
+  background-color: #e7f6ae;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #363636;
+  border: none;
 }

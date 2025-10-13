@@ -1,9 +1,10 @@
-import Header from "../../components/Header/Header";
+import { AccountInfo } from "../../components/Header/AccountInfo/AccountInfo";
+import "./Login.scss";
 
 export function Login() {
   return (
-    <>
-      <Header />
-    </>
+    <div className="login-page">
+      <AccountInfo />
+    </div>
   );
 }
