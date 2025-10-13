@@ -4,6 +4,7 @@ import { FilterBlock } from "./FilterBlock";
 import { ShowTable } from "./Table";
 import type { CompanyData } from "./Table";
 import "./Home.scss";
+import { Login } from "../Login/Login";
 
 export function Home({
   data,
@@ -23,9 +24,7 @@ export function Home({
       <Header />
       <div className="home-page">
         {!login ? (
-          <div className="account-info">
-            <AccountInfo login={login} setLogin={setLogin} />
-          </div>
+              <Login />
         ) : (
           <>
             <div className="account-info">

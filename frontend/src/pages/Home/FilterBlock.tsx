@@ -25,6 +25,13 @@ export function FilterBlock({ setData }: FilterBlockProps) {
   const [website, setWebsite] = useState("");
   const [department, setDepartment] = useState("");
   const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState({
+    company: false,
+    role: false,
+    website: false,
+    department: false,
+    status: false
+  });
 
   const addNewRequest = () => {
     const newRequest: CompanyData = {
@@ -49,11 +56,23 @@ export function FilterBlock({ setData }: FilterBlockProps) {
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
-  // Removed modalStyle as it's now in SCSS
+  const validateFields = () => {
+    const newErrors = {
+      company: company.trim() === "",
+      role: role.trim() === "",
+      website: website.trim() === "",
+      department: department.trim() === "",
+      status: status.trim() === ""
+    };
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error);
+  };
 
   const handleSubmit = () => {
-    addNewRequest();
-    handleClose();
+    if (validateFields()) {
+      addNewRequest();
+      handleClose();
+    }
   };
 
   return (
@@ -71,39 +90,69 @@ export function FilterBlock({ setData }: FilterBlockProps) {
         <Box className="modal-content">
           <div className="modal-title">Add New Request</div>
           <TextField
+            required
             fullWidth
             margin="normal"
             label="Company"
             value={company}
-            onChange={(e) => setCompany(e.target.value)}
+            onChange={(e) => {
+              setCompany(e.target.value);
+              setErrors(prev => ({ ...prev, company: false }));
+            }}
+            error={errors.company}
+            helperText={errors.company ? "This field is required" : ""}
           />
           <TextField
+            required
             fullWidth
             margin="normal"
             label="Role"
             value={role}
-            onChange={(e) => setRole(e.target.value)}
+            onChange={(e) => {
+              setRole(e.target.value);
+              setErrors(prev => ({ ...prev, role: false }));
+            }}
+            error={errors.role}
+            helperText={errors.role ? "This field is required" : ""}
           />
           <TextField
+            required
             fullWidth
             margin="normal"
             label="Website"
             value={website}
-            onChange={(e) => setWebsite(e.target.value)}
+            onChange={(e) => {
+              setWebsite(e.target.value);
+              setErrors(prev => ({ ...prev, website: false }));
+            }}
+            error={errors.website}
+            helperText={errors.website ? "This field is required" : ""}
           />
           <TextField
+            required
             fullWidth
             margin="normal"
             label="Department"
             value={department}
-            onChange={(e) => setDepartment(e.target.value)}
+            onChange={(e) => {
+              setDepartment(e.target.value);
+              setErrors(prev => ({ ...prev, department: false }));
+            }}
+            error={errors.department}
+            helperText={errors.department ? "This field is required" : ""}
           />
           <TextField
+            required
             fullWidth
             margin="normal"
             label="Status"
             value={status}
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={(e) => {
+              setStatus(e.target.value);
+              setErrors(prev => ({ ...prev, status: false }));
+            }}
+            error={errors.status}
+            helperText={errors.status ? "This field is required" : ""}
           />
           <Box className="modal-actions">
             <Button className="cancel-button" onClick={handleClose}>

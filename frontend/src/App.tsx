@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
+import { Register } from "./pages/Register/Register";
 import type { CompanyData } from "./pages/Home/Table";
 import { useState } from "react";
 
@@ -104,6 +105,7 @@ function App() {
     <Routes>
       <Route index element={<Home data={data} setData={setData} updateData={updateData} login={login} setLogin={setLogin} />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }
