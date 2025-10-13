@@ -18,3 +18,72 @@
 .add-new:hover {
   background-color: #c4e86f;
 }
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #282828;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.3);
+  padding: 32px;
+  border-radius: 20px;
+
+  .modal-title {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .MuiTextField-root {
+    .MuiOutlinedInput-root {
+      fieldset {
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      &:hover fieldset {
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+      &.Mui-focused fieldset {
+        border-color: #d1f06e;
+      }
+    }
+    .MuiInputLabel-root {
+      color: rgba(255, 255, 255, 0.87);
+      &.Mui-focused {
+        color: #d1f06e;
+      }
+    }
+    .MuiInputBase-input {
+      color: rgba(255, 255, 255, 0.87);
+      font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    }
+  }
+
+  .modal-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    .cancel-button {
+      color: #363636;
+      background-color: rgba(255, 255, 255, 0.5);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .submit-button {
+      background-color: #d1f06e;
+      color: #363636;
+      font-weight: 700;
+      &:hover {
+        background-color: #c4e86f;
+      }
+    }
+  }
+}
