@@ -44,7 +44,7 @@ export function AccountInfo() {
             {label}
           </div>
         ))}
-        <button>Log Out</button>
+        <button type="button" className="logout-button">Log Out</button>
       </div>
     </>
   );

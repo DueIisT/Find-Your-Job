@@ -13,7 +13,7 @@ th {
   padding: 2px 4px;
 }
 
-table{
+table {
   border-collapse: collapse;
 }
 
@@ -23,13 +23,28 @@ table{
   font-weight: 700;
   padding-bottom: 20px;
 }
-td{
+td {
   padding: 16px 4px;
   text-align: center;
   @include text;
   font-size: 16px;
 }
 
-tr{
+tr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+th {
+  @include text;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 4px;
+}
+a {
+  color: #1e90ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }

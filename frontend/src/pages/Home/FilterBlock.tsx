@@ -1,3 +1,5 @@
+import './FilterBlock.scss';
+
 export interface CompanyData {
   company: string;
   role: string;
@@ -25,14 +27,12 @@ export function FilterBlock({setData }: FilterBlockProps) {
       uuid: crypto.randomUUID(),
     };
 
-    // Добавляем в конец массива
     setData((prev) => [...prev, newRequest]);
   };
 
   return (
     <div className="filter-container">
-      <div></div>
-      <div onClick={addNewRequest}>Add new</div>
+      <div className="add-new" onClick={addNewRequest}>Add new</div>
     </div>
   );
 }

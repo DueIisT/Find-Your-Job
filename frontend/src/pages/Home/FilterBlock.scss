@@ -1,0 +1,23 @@
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+
+
+.add-new {
+  background-color: #d1f06e;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #363636;
+}
+
+.add-new:hover {
+  background-color: #c4e86f;
+}

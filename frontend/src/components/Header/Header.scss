@@ -51,7 +51,7 @@ font-family: Plus Jakarta Sans, "Plus Jakarta Sans Fallback: Arial", Roboto, -ap
 
 .current-day {
   @include text();
-  color: black;
+  color: #363636;
   font-weight: 500;
   display: flex;
   flex-direction: column;
