@@ -1,0 +1,27 @@
+@mixin text {
+  font-family: Plus Jakarta Sans, "Plus Jakarta Sans Fallback: Arial", Roboto,
+    -apple-system, Segoe UI, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.home-page {
+  width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.account-info {
+  background-color: #282828;
+  width: 15%;
+  height: 680px;
+  margin-top: 30px;
+  border-radius: 20px;
+
+}
+
+.content {
+  width: 80%;
+  margin-top: 30px;
+}

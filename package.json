@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "dayjs": "^1.11.18",
+    "react-router": "^7.9.4"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.93.2"
+  }
+}

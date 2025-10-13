@@ -1,0 +1,66 @@
+@mixin text {
+font-family: Plus Jakarta Sans, "Plus Jakarta Sans Fallback: Arial", Roboto, -apple-system, Segoe UI, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.87);
+}
+
+.header-container {
+  width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  max-height: 50px;
+  padding: 10px 30px;
+}
+
+.header-logo {
+  @include text();
+  font-size: 44px;
+  font-weight: 800;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+.header-navigation {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.header-navigation input {
+  width: 60%;
+  height: 42px;
+  background-color: #282828;
+  border: 1px solid;
+  border-radius: 10px;
+  @include text;
+  color: #363636;
+  font-size: 16px;
+  padding-left: 20px;
+  
+}
+
+.header-navigation input:focus{
+  outline: none
+}
+
+.current-day {
+  @include text();
+  color: black;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  background-color: #d1f06e;
+  height: 44px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+

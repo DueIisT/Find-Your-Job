@@ -1,0 +1,35 @@
+@mixin text {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.table-container {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 2px 4px;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+.table-header {
+  @include text;
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+td{
+  padding: 16px 4px;
+  text-align: center;
+  @include text;
+  font-size: 16px;
+}
+
+tr{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
