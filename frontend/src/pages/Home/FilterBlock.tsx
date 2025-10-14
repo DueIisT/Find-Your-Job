@@ -9,6 +9,7 @@ export interface CompanyData {
   website: string;
   department: string;
   status: string;
+  salary: number;
   date: string;
   uuid: string;
 }
@@ -23,6 +24,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [website, setWebsite] = useState("");
+  const [salary, setSalary] = useState("");
   const [department, setDepartment] = useState("");
   const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({
@@ -30,7 +32,8 @@ export function FilterBlock({ setData }: FilterBlockProps) {
     role: false,
     website: false,
     department: false,
-    status: false
+    status: false,
+    salary: false,
   });
 
   const addNewRequest = () => {
@@ -40,6 +43,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
       website,
       department,
       status,
+      salary: Number(salary),
       date: new Date().toString(),
       uuid: crypto.randomUUID(),
     };
@@ -48,6 +52,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
     setRole("");
     setWebsite("");
     setDepartment("");
+    setSalary("0");
     setStatus("");
 
     setData((prev) => [...prev, newRequest]);
@@ -62,10 +67,11 @@ export function FilterBlock({ setData }: FilterBlockProps) {
       role: role.trim() === "",
       website: website.trim() === "",
       department: department.trim() === "",
-      status: status.trim() === ""
+      salary: salary.trim() === "" || isNaN(Number(salary)),
+      status: status.trim() === "",
     };
     setErrors(newErrors);
-    return !Object.values(newErrors).some(error => error);
+    return !Object.values(newErrors).some((error) => error);
   };
 
   const handleSubmit = () => {
@@ -97,7 +103,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
             value={company}
             onChange={(e) => {
               setCompany(e.target.value);
-              setErrors(prev => ({ ...prev, company: false }));
+              setErrors((prev) => ({ ...prev, company: false }));
             }}
             error={errors.company}
             helperText={errors.company ? "This field is required" : ""}
@@ -110,7 +116,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
             value={role}
             onChange={(e) => {
               setRole(e.target.value);
-              setErrors(prev => ({ ...prev, role: false }));
+              setErrors((prev) => ({ ...prev, role: false }));
             }}
             error={errors.role}
             helperText={errors.role ? "This field is required" : ""}
@@ -123,7 +129,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
             value={website}
             onChange={(e) => {
               setWebsite(e.target.value);
-              setErrors(prev => ({ ...prev, website: false }));
+              setErrors((prev) => ({ ...prev, website: false }));
             }}
             error={errors.website}
             helperText={errors.website ? "This field is required" : ""}
@@ -136,10 +142,23 @@ export function FilterBlock({ setData }: FilterBlockProps) {
             value={department}
             onChange={(e) => {
               setDepartment(e.target.value);
-              setErrors(prev => ({ ...prev, department: false }));
+              setErrors((prev) => ({ ...prev, department: false }));
             }}
             error={errors.department}
             helperText={errors.department ? "This field is required" : ""}
+          />
+          <TextField
+            required
+            fullWidth
+            margin="normal"
+            label="Salary"
+            value={salary}
+            onChange={(e) => {
+              setSalary(e.target.value);
+              setErrors((prev) => ({ ...prev, salary: false }));
+            }}
+            error={errors.salary}
+            helperText={errors.salary ? "This field is required" : ""}
           />
           <TextField
             required
@@ -149,7 +168,7 @@ export function FilterBlock({ setData }: FilterBlockProps) {
             value={status}
             onChange={(e) => {
               setStatus(e.target.value);
-              setErrors(prev => ({ ...prev, status: false }));
+              setErrors((prev) => ({ ...prev, status: false }));
             }}
             error={errors.status}
             helperText={errors.status ? "This field is required" : ""}

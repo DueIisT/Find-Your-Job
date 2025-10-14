@@ -1,10 +1,14 @@
-import React from "react";
-import StackBars from "./Charts";
+import type { CompanyData } from "../Home/Table";
+import TickPlacementBars from "./Charts";
 
-function Statistics() {
+interface showTableProps {
+  data: CompanyData[];
+}
+
+function Statistics({ data }: showTableProps) {
   return (
     <div className="statistics-container">
-      <StackBars />
+      <TickPlacementBars data={data} />
     </div>
   );
 }

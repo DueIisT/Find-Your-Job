@@ -52,7 +52,7 @@ export function Home({
                     />
                   }
                 />
-                <Route path="/statistics" element={<Statistics />} />
+                <Route path="/statistics" element={<Statistics data={data}/>} />
               </Routes>
             </div>
           </>

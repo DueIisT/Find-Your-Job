@@ -13,6 +13,7 @@ export interface CompanyData {
   website: string;
   department: string;
   status: string;
+  salary: number;
   date: string;
   uuid: string;
 }
@@ -43,6 +44,7 @@ export function ShowTable({ data, updateData, setData }: ShowTableProps) {
         );
       },
     },
+    { accessorKey: "salary", header: "Salary" },
     { accessorKey: "department", header: "Department" },
     {
       accessorKey: "status",
