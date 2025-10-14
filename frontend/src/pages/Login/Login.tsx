@@ -1,6 +1,17 @@
 import "./Login.scss";
 
-export function Login() {
+export function Login({
+  login,
+  setLogin,
+}: {
+  login?: boolean;
+  setLogin?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const updateLogin = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setLogin?.(!login);
+  };
+
   return (
     <div className="login-wrapper">
       <form className="form_container">
@@ -86,7 +97,12 @@ export function Login() {
             id="password_field"
           />
         </div>
-        <button title="Sign In" type="submit" className="sign-in_btn">
+        <button
+          title="Sign In"
+          type="submit"
+          className="sign-in_btn"
+          onClick={updateLogin}
+        >
           <span>Sign In</span>
         </button>
 
@@ -154,10 +170,7 @@ export function Login() {
           </svg>
           <span>Sign In with Apple</span>
         </button>
-        <button 
-          type="button" 
-          className="register-btn"
-        >
+        <button type="button" className="register-btn">
           Create an Account
         </button>
         <p className="note">Terms of use &amp; Conditions</p>

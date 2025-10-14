@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import "./Table.scss";
+import { FilterBlock } from "./FilterBlock";
 
 export interface CompanyData {
   company: string;
@@ -19,9 +20,10 @@ export interface CompanyData {
 interface ShowTableProps {
   data: CompanyData[];
   updateData: (uuid: string, update: Partial<CompanyData>) => void;
+  setData: React.Dispatch<React.SetStateAction<CompanyData[]>>;
 }
 
-export function ShowTable({ data, updateData }: ShowTableProps) {
+export function ShowTable({ data, updateData, setData }: ShowTableProps) {
   const changeStatus = (uuid: string) => {
     updateData(uuid, { status: "in progress" });
   };
@@ -67,37 +69,43 @@ export function ShowTable({ data, updateData }: ShowTableProps) {
   });
 
   return (
-    <table className="table-container">
-      <thead>
-        {table.getHeaderGroups().map((hg) => (
-          <tr key={hg.id}>
-            {hg.headers.map((header) => (
-              <th key={header.id}>
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    <>
+      <FilterBlock data={data} setData={setData} />
+      <table className="table-container">
+        <thead>
+          {table.getHeaderGroups().map((hg) => (
+            <tr key={hg.id}>
+              {hg.headers.map((header) => (
+                <th key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+              <td>
+                <button
+                  className="update-button"
+                  onClick={() => changeStatus(row.original.uuid)}
+                >
+                  Update
+                </button>
               </td>
-            ))}
-            <td>
-              <button className="update-button" onClick={() => changeStatus(row.original.uuid)}>
-                Update
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

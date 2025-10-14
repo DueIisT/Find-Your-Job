@@ -1,10 +1,11 @@
 import Header from "../../components/Header/Header/Header";
 import { AccountInfo } from "../../components/Header/AccountInfo/AccountInfo";
-import { FilterBlock } from "./FilterBlock";
 import { ShowTable } from "./Table";
 import type { CompanyData } from "./Table";
 import "./Home.scss";
 import { Login } from "../Login/Login";
+import { Route, Routes } from "react-router";
+import Statistics from "../Statistics/Statistics";
 
 export function Home({
   data,
@@ -24,19 +25,27 @@ export function Home({
       <Header />
       <div className="home-page">
         {!login ? (
-              <Login />
+          <Login login={login} setLogin={setLogin} />
         ) : (
           <>
             <div className="account-info">
               <AccountInfo login={login} setLogin={setLogin} />
             </div>
             <div className="content">
-              <FilterBlock data={data} setData={setData} />
-              <ShowTable
-                key={data.length + JSON.stringify(data)}
-                data={data}
-                updateData={updateData}
-              />
+              <Routes>
+                <Route
+                  index
+                  element={
+                    <ShowTable
+                      key={data.length + JSON.stringify(data)}
+                      data={data}
+                      setData={setData}
+                      updateData={updateData}
+                    />
+                  }
+                />
+                <Route path="/statistics" element={<Statistics />} />
+              </Routes>
             </div>
           </>
         )}
