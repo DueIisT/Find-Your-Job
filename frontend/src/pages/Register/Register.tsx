@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 
 export function Register() {
+  const navigate = useNavigate();
   return (
     <div className="register-wrapper">
       <form className="form_container">
@@ -171,7 +173,11 @@ export function Register() {
           <span>Or</span>
           <hr className="line" />
         </div>
-        <button title="Sign Up with Google" type="button" className="sign-in_ggl">
+        <button
+          title="Sign Up with Google"
+          type="button"
+          className="sign-in_ggl"
+        >
           <svg
             height="18"
             width="18"
@@ -211,10 +217,11 @@ export function Register() {
           </svg>
           <span>Sign Up with Google</span>
         </button>
-        <button 
-          title="Back to Login" 
-          type="button" 
+        <button
+          title="Back to Login"
+          type="button"
           className="login-btn"
+          onClick={() => navigate("/")}
         >
           Already have an account? Sign In
         </button>

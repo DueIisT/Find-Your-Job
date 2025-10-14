@@ -6,6 +6,7 @@ import "./Home.scss";
 import { Login } from "../Login/Login";
 import { Route, Routes } from "react-router";
 import Statistics from "../Statistics/Statistics";
+import { Register } from "../Register/Register";
 
 export function Home({
   data,
@@ -25,7 +26,14 @@ export function Home({
       <Header />
       <div className="home-page">
         {!login ? (
-          <Login login={login} setLogin={setLogin} />
+          <Routes>
+            <Route
+              path="/"
+              index
+              element={<Login login={login} setLogin={setLogin} />}
+            />
+            <Route path="/register" element={<Register />} />
+          </Routes>
         ) : (
           <>
             <div className="account-info">

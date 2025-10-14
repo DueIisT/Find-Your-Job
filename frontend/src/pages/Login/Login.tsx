@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import "./Login.scss";
 
 export function Login({
@@ -11,6 +12,8 @@ export function Login({
     e.preventDefault();
     setLogin?.(!login);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="login-wrapper">
@@ -170,7 +173,7 @@ export function Login({
           </svg>
           <span>Sign In with Apple</span>
         </button>
-        <button type="button" className="register-btn">
+        <button type="button" className="register-btn" onClick={() => navigate("/register")}>
           Create an Account
         </button>
         <p className="note">Terms of use &amp; Conditions</p>
