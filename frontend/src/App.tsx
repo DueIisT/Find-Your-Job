@@ -1,11 +1,9 @@
 import "./App.css";
-import { Route, Routes } from "react-router";
 import { Home } from "./pages/Home/Home";
 import type { CompanyData } from "./pages/Home/Table";
 import { useState } from "react";
 
 function App() {
-
   const [login, setLogin] = useState(false);
   const [data, setData] = useState<CompanyData[]>([
     {
@@ -100,9 +98,13 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route path="*" index element={<Home data={data} setData={setData} updateData={updateData} login={login} setLogin={setLogin} />} />
-    </Routes>
+    <Home
+      data={data}
+      setData={setData}
+      updateData={updateData}
+      login={login}
+      setLogin={setLogin}
+    />
   );
 }
 

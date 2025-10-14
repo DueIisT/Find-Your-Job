@@ -28,7 +28,7 @@ export function Home({
         {!login ? (
           <Routes>
             <Route
-              path="/"
+              path="*"
               index
               element={<Login login={login} setLogin={setLogin} />}
             />

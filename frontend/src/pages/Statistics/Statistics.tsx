@@ -1,9 +1,10 @@
 import React from "react";
+import StackBars from "./Charts";
 
 function Statistics() {
   return (
     <div className="statistics-container">
-      <h1>Statistics</h1>
+      <StackBars />
     </div>
   );
 }
