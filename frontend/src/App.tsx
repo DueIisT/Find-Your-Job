@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState<CompanyData[]>([
     {
       company: "Bauch, Hirthe and Jones",
-      role: "Administrator",
+      role: "Junior",
       website: "https://earnest-ballpark.info",
       department: "Internal",
       status: "rejected",
@@ -18,7 +18,7 @@ function App() {
     },
     {
       company: "Cremin, Koch and Satterfield",
-      role: "Technician",
+      role: "Junior",
       website: "https://pastel-button.net/",
       department: "Chief",
       status: "in progress",
@@ -28,7 +28,7 @@ function App() {
     },
     {
       company: "Hackett LLC",
-      role: "Specialist",
+      role: "Middle",
       website: "https://sturdy-deviation.com",
       department: "Investor",
       status: "rejected",
@@ -38,7 +38,7 @@ function App() {
     },
     {
       company: "Medhurst LLC",
-      role: "Liaison",
+      role: "Senior",
       website: "https://fumbling-maid.info/",
       department: "Product",
       status: "rejected",
@@ -48,7 +48,7 @@ function App() {
     },
     {
       company: "Champlin - Franecki",
-      role: "Orchestrator",
+      role: "Junior",
       website: "https://well-worn-nightclub.biz",
       department: "Dynamic",
       status: "in progress",
@@ -58,7 +58,7 @@ function App() {
     },
     {
       company: "Mohr, Bashirian and Murray",
-      role: "Strategist",
+      role: "Trainee",
       website: "https://hard-to-find-leather.org",
       department: "Product",
       status: "in progress",
@@ -68,7 +68,7 @@ function App() {
     },
     {
       company: "Lynch - Kerluke",
-      role: "Facilitator",
+      role: "Senior",
       website: "https://emotional-round.info/",
       department: "Global",
       status: "in progress",
@@ -78,7 +78,7 @@ function App() {
     },
     {
       company: "Nader, Steuber and Marquardt",
-      role: "Liaison",
+      role: "Middle",
       website: "https://suburban-logic.name",
       department: "Investor",
       status: "in progress",
@@ -88,7 +88,7 @@ function App() {
     },
     {
       company: "Beier - Bauch",
-      role: "Representative",
+      role: "Senior",
       website: "https://concerned-decision-making.org",
       department: "Product",
       status: "in progress",
