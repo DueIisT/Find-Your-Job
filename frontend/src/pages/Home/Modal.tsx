@@ -1,6 +1,7 @@
 import { Modal, Box, TextField, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import type { CompanyData } from "./FilterBlock";
+import ControllableStates from "./AutocompleteStatus";
 
 export function CustomModal({
   isOpen,
@@ -124,13 +125,35 @@ export function CustomModal({
           error={errors.website}
           helperText={errors.website ? "This field is required" : ""}
         />
-        <TextField
+        <ControllableStates
           required
           fullWidth
           margin="normal"
           label="Department"
           value={department}
-          onChange={(e) => setDepartment(e.target.value)}
+          options={[
+            "Development",
+            "Marketing",
+            "Sales",
+            "Finance",
+            "Project Management",
+            "Human Resources",
+            "Customer Service",
+            "Information Technology",
+            "Manufacturing",
+            "Administration",
+            "Research and Development",
+            "Logistics",
+            "Quality",
+            "Operations",
+            "Business Analysis",
+            "Customer Support",
+            "Medical Services",
+            "Education and Training",
+            "Legal Department",
+            "Public Relations",
+          ]}
+          onChange={(value) => setDepartment(value)}
           error={errors.department}
           helperText={errors.department ? "This field is required" : ""}
         />
@@ -144,19 +167,28 @@ export function CustomModal({
           error={errors.salary}
           helperText={errors.salary ? "This field is required" : ""}
         />
-        <TextField
+        <ControllableStates
           required
           fullWidth
           margin="normal"
           label="Status"
           value={status}
-          onChange={(e) => setStatus(e.target.value)}
+          options={[
+            "Applied",
+            "Interviewing",
+            "Offered",
+            "Rejected",
+            "Accepted",
+          ]}
+          onChange={(value) => setStatus(value)}
           error={errors.status}
           helperText={errors.status ? "This field is required" : ""}
         />
 
         <Box className="modal-actions">
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button className="cancel-button" onClick={handleClose}>
+            Cancel
+          </Button>
           <Button
             sx={{
               backgroundColor: "#d1f06e",
