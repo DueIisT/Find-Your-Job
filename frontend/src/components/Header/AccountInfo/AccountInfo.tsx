@@ -15,7 +15,7 @@ interface AccountInfoProps {
 export function AccountInfo({ login, setLogin }: AccountInfoProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
-  
+
   const iconDefault = "rgba(255, 255, 255, 0.87)";
   const iconActive = "#d1f06e";
 
@@ -26,7 +26,7 @@ export function AccountInfo({ login, setLogin }: AccountInfoProps) {
     { label: "Help", Icon: HelpIcon, route: "/help" },
   ];
 
-    const handleNavClick = (index: number, route: string) => {
+  const handleNavClick = (index: number, route: string) => {
     setActiveIndex(index);
     navigate(route);
   };
@@ -50,7 +50,7 @@ export function AccountInfo({ login, setLogin }: AccountInfoProps) {
           <div
             key={index}
             className={`nav-element ${activeIndex === index ? "active" : ""}`}
-             onClick={() => handleNavClick(index, route)}
+            onClick={() => handleNavClick(index, route)}
           >
             <Icon
               iconColor={activeIndex === index ? iconActive : iconDefault}

@@ -3,6 +3,7 @@ import { Home } from "./pages/Home/Home";
 import type { CompanyData } from "./pages/Home/Table";
 import { useState } from "react";
 
+
 function App() {
   const [login, setLogin] = useState(false);
   const [data, setData] = useState<CompanyData[]>([

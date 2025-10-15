@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -6,6 +7,7 @@ import {
 import type { ColumnDef } from "@tanstack/react-table";
 import "./Table.scss";
 import { FilterBlock } from "./FilterBlock";
+import { CustomModal } from "./Modal";
 
 export interface CompanyData {
   company: string;
@@ -24,9 +26,19 @@ interface ShowTableProps {
   setData: React.Dispatch<React.SetStateAction<CompanyData[]>>;
 }
 
-export function ShowTable({ data, updateData, setData }: ShowTableProps) {
-  const changeStatus = (uuid: string) => {
-    updateData(uuid, { status: "in progress" });
+export function ShowTable({ data, setData }: ShowTableProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editableItem, setEditableItem] = useState<CompanyData | null>(null);
+
+  const handleEdit = (item: CompanyData) => {
+    setEditableItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleSave = (updated: CompanyData) => {
+    setData((prev) =>
+      prev.map((item) => (item.uuid === updated.uuid ? updated : item))
+    );
   };
 
   const columns: ColumnDef<CompanyData>[] = [
@@ -39,29 +51,14 @@ export function ShowTable({ data, updateData, setData }: ShowTableProps) {
         const url = getValue<string>();
         return (
           <a href={url} target="_blank" rel="noopener noreferrer">
-            {url.replace("https://", "")}
+            {url.replace("https://", "").replace("/", "")}
           </a>
         );
       },
     },
     { accessorKey: "salary", header: "Salary" },
     { accessorKey: "department", header: "Department" },
-    {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ getValue }) => {
-        const status = getValue<string>();
-        return (
-          <span
-            className={
-              status === "in progress" ? "status-progress" : "status-rejected"
-            }
-          >
-            {status}
-          </span>
-        );
-      },
-    },
+    { accessorKey: "status", header: "Status" },
   ];
 
   const table = useReactTable({
@@ -85,6 +82,7 @@ export function ShowTable({ data, updateData, setData }: ShowTableProps) {
                   )}
                 </th>
               ))}
+              <th>Actions</th>
             </tr>
           ))}
         </thead>
@@ -99,7 +97,7 @@ export function ShowTable({ data, updateData, setData }: ShowTableProps) {
               <td>
                 <button
                   className="update-button"
-                  onClick={() => changeStatus(row.original.uuid)}
+                  onClick={() => handleEdit(row.original)}
                 >
                   Update
                 </button>
@@ -108,6 +106,14 @@ export function ShowTable({ data, updateData, setData }: ShowTableProps) {
           ))}
         </tbody>
       </table>
+
+      <CustomModal
+        isOpen={isModalOpen}
+        handleClose={() => setIsModalOpen(false)}
+        setData={setData}
+        editableItem={editableItem}
+        onSave={handleSave}
+      />
     </>
   );
 }
