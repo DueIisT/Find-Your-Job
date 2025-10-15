@@ -12,6 +12,7 @@ export function Login({
   const updateLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     setLogin?.(!login);
+    navigate("/dashboard");
   };
 
   const navigate = useNavigate();

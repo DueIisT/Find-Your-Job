@@ -51,7 +51,7 @@ export default function PieArcLabel({ data = [] }: { data?: CompanyData[] }) {
             series={[
               {
                 data: roleStats,
-                arcLabel: (item) => `${item.label}: ${Math.round(item.value)}%`,
+                arcLabel: (item) => `${Math.round(item.value)}%`,
                 arcLabelMinAngle: 35,
                 arcLabelRadius: "60%",
               },
@@ -63,8 +63,8 @@ export default function PieArcLabel({ data = [] }: { data?: CompanyData[] }) {
                 fontWeight: "bold",
               },
             }}
-            width={320}
-            height={320}
+            width={360}
+            height={360}
           />
         ) : (
           <p style={{ color: "rgba(255,255,255,0.6)" }}>No data available</p>

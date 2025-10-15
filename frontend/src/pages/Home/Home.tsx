@@ -43,6 +43,7 @@ export function Home({
               <Routes>
                 <Route
                   index
+                  path="/dashboard"
                   element={
                     <ShowTable
                       key={data.length + JSON.stringify(data)}
@@ -52,7 +53,10 @@ export function Home({
                     />
                   }
                 />
-                <Route path="/statistics" element={<Statistics data={data}/>} />
+                <Route
+                  path="/statistics"
+                  element={<Statistics data={data} />}
+                />
               </Routes>
             </div>
           </>

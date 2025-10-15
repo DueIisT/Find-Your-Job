@@ -4,8 +4,8 @@ import { Statistics } from "../../../assets/statistics";
 import { Settings } from "../../../assets/settings";
 import { HelpIcon } from "../../../assets/help";
 import "./AccountInfo.scss";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface AccountInfoProps {
   login: boolean;
@@ -13,18 +13,27 @@ interface AccountInfoProps {
 }
 
 export function AccountInfo({ login, setLogin }: AccountInfoProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const iconDefault = "rgba(255, 255, 255, 0.87)";
   const iconActive = "#d1f06e";
 
   const navItems = [
-    { label: "Dashboard", Icon: Dashboard, route: "/" },
+    { label: "Dashboard", Icon: Dashboard, route: "/dashboard" },
     { label: "My Statistics", Icon: Statistics, route: "/statistics" },
     { label: "Settings", Icon: Settings, route: "/settings" },
     { label: "Help", Icon: HelpIcon, route: "/help" },
   ];
+
+  // 👇 при загрузке (или при смене URL) выставляем активный пункт
+  useEffect(() => {
+    const currentIndex = navItems.findIndex((item) =>
+      location.pathname.startsWith(item.route)
+    );
+    setActiveIndex(currentIndex !== -1 ? currentIndex : null);
+  }, [location.pathname]); // обновляется при каждом изменении пути
 
   const handleNavClick = (index: number, route: string) => {
     setActiveIndex(index);
@@ -32,12 +41,12 @@ export function AccountInfo({ login, setLogin }: AccountInfoProps) {
   };
 
   return (
-    <>
+    <div className="account-info-wrapper">
       <div className="account-container">
         <img
           className="profile-img"
           src={emptyProfileImage}
-          alt="Profile image"
+          alt="Profile"
         />
         <div className="profile-info">
           <div className="profile-name">Dima Murzin</div>
@@ -48,16 +57,17 @@ export function AccountInfo({ login, setLogin }: AccountInfoProps) {
       <div className="nav-container">
         {navItems.map(({ label, Icon, route }, index) => (
           <div
-            key={index}
+            key={label}
             className={`nav-element ${activeIndex === index ? "active" : ""}`}
             onClick={() => handleNavClick(index, route)}
           >
             <Icon
               iconColor={activeIndex === index ? iconActive : iconDefault}
             />
-            {label}
+            <span>{label}</span>
           </div>
         ))}
+
         <button
           type="button"
           className={login ? "logout-button" : "login-button"}
@@ -66,6 +76,6 @@ export function AccountInfo({ login, setLogin }: AccountInfoProps) {
           {login ? "Log Out" : "Log In"}
         </button>
       </div>
-    </>
+    </div>
   );
 }
